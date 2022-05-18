@@ -12,24 +12,47 @@ public class PanningZoomingWithRect : MonoBehaviour
     }
 
     // Update is called once per frame
-    float scaleAmount = 1.0f;
     Vector2 lastMousePosition = Vector2.zero;
     Rect canvasOffset = new Rect(0,0,1,1); 
 
-    //The issue with this is that the panning isn't consistent when zoomed in.
+    float minScale = 0.01f;
+    float maxScale = 5.0f;
+
     void Update()
     {
 
         Vector2 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        float scaleDelta = Input.mouseScrollDelta.y * Time.deltaTime * 10.0f;
+        float normalizedScale = Mathf.InverseLerp(minScale,maxScale, canvasOffset.size.x); //TODO: Handle multiple axis
+        Vector2 scaleFactor = Mathf.Pow(Mathf.Clamp(normalizedScale, .01f, .25f), 1.25f) * Vector2.one; //Zoom slower when we get closer
+
+        Vector2 scaleDelta = Input.mouseScrollDelta.y *  scaleFactor;
         Vector2 positionDelta = Vector2.zero;
+
+        Vector2 clampedSize = canvasOffset.size + scaleDelta;
+        clampedSize = new Vector2(
+            Mathf.Clamp(clampedSize.x, minScale, maxScale),
+            Mathf.Clamp(clampedSize.y, minScale, maxScale)
+        );
+        scaleDelta = clampedSize - canvasOffset.size;
 
         if(Input.GetMouseButton(0)){
             positionDelta = lastMousePosition - mousePos;
         }
-        Vector2 pivot = mousePos;
 
-        canvasOffset.size += scaleDelta * Vector2.one;//This scales from the top left corner -- the corner now needs to be offset
+        /*
+        //Idea for clamping delta -- doesn't work
+        Vector2 clampedPosition = canvasOffset.position;
+        clampedPosition -= mousePos * scaleDelta;// Scale from mouse position
+        clampedPosition += positionDelta * clampedSize;
+        clampedPosition = new Vector2(
+            Mathf.Clamp(clampedPosition.x, -1.0f, 0.0f),
+            Mathf.Clamp(clampedPosition.y, -1.0f, 0.0f)
+        );
+        positionDelta = clampedPosition - canvasOffset.position;
+        */
+
+        //This is really the heart of the technique:
+        canvasOffset.size += scaleDelta;//This scales from the top left corner -- the corner now needs to be offset
         canvasOffset.position -= mousePos * scaleDelta;// Scale from mouse position
         canvasOffset.position += positionDelta * canvasOffset.size;
 
