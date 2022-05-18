@@ -31,7 +31,7 @@ public class PanningZoomingWithRect : MonoBehaviour
 
         canvasOffset.size += scaleDelta * Vector2.one;//This scales from the top left corner -- the corner now needs to be offset
         canvasOffset.position -= mousePos * scaleDelta;// Scale from mouse position
-        canvasOffset.position += positionDelta;
+        canvasOffset.position += positionDelta * canvasOffset.size;
 
         panningMaterial.SetTextureOffset("_MainTex", canvasOffset.position);
         panningMaterial.SetTextureScale("_MainTex", canvasOffset.size);
