@@ -16,8 +16,12 @@ public class PanningZoomingWithShader : MonoBehaviour
     float scaleAmount = 1.0f;
     Vector2 lastMousePosition = Vector2.zero;
     Vector2 pan = Vector2.zero;
-    Vector2 center = Vector2.zero;
-    Vector2 lastCenter = Vector2.zero;
+
+
+    //The issue with this is that the mouse offset begins to shake the camera when zoomed in.
+    //It looks fine when the mouse and canvas aren't moving though.
+
+
     void Update()
     {
 
