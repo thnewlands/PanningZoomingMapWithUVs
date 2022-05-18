@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Unlit_PanAndZoom
+  m_Shader: {fileID: 4800000, guid: b75a0b7e7d3940b44a0aa13c36cb4edb, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: c467ee35c5bb6d743a4fa8bf7039a8cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Pan: {r: 0.06351662, g: 0.44220412, b: 0, a: 0}
+    - _Pivot: {r: 0.36638266, g: 1.0645162, b: 0, a: 0}
+    - _Zoom: {r: 1.286807, g: 1.286807, b: 0, a: 0}
+  m_BuildTextureStacks: []
