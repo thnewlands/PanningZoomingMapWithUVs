@@ -2,7 +2,7 @@
 
 This repo is a companion to this Unity Issue where I describe the problem in more detail: https://answers.unity.com/questions/1902756/how-would-you-go-about-panning-and-zooming-using-t.html
 
-Currently the Rect approach works! It currently only clamps the scale. If you have a solution for clamping the position using this technique please send a pull request.
+Currently the Rect approach works! Right now it only clamps the scale. If you have a solution for clamping the position using this technique please send a pull request.
 
 The shader approach still doesn't work entirely. It's a good study in scaling from a single position in a shader though. The issue with the shader approach is that the mouse position isn't consistent when zoomed in.
 
