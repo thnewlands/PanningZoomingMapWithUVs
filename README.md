@@ -1,6 +1,6 @@
 # Panning & Zooming Map With UVs
 
-Trying to solve this problem: https://answers.unity.com/questions/1902756/how-would-you-go-about-panning-and-zooming-using-t.html
+This repo is a companion to this Unity Issue where I describe the problem in more detail: https://answers.unity.com/questions/1902756/how-would-you-go-about-panning-and-zooming-using-t.html
 
 - The issue with the rect approach is that the panning isn't consistent when zoomed in.
 - The issue with the shader approach is that the mouse position isn't consistent when zoomed in.
